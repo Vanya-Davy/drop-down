@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,16 +9,40 @@
 </head>
 
 <body>
-  <select id="sel" multiple="multiple">
-    <option value="Option 1">Option 1</option>
-    <option value="Option 2">Option 2</option>
-    <option value="Option 3">Option 3</option>
+  <ul>
+
+  </ul>
+  <select id="sel">
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
     
     </select>
-    <span id="result"></span>
+    <!-- <span id="result"></span>
     <hr/>
-    <input type="button" id="butl" value="Click" onclick="listboxresult()"/>
+    <button id="submit">submit</button> -->
 </body>
-<script src="./app.js"></script>
+<script>
+  let arr=[];
+  const ul = document.querySelector('ul');
+  const select = document.querySelector('select');
+  select.selectedIndex =-1;
+  select.addEventListener('change', (e)=>{
+    if(e.target.selectefdIndex !== -1){
+      if(arr.includes(e.target.value)){
+        arr =arr.filter(item =>item !== e.target.value);
+        const ele = document.querySelector(`#option-${e.target.value}`);
+        ele.remove();
+      }else{
+        arr.push(e.target.value);
+        const li = document.createElement('li');
+        li.setAttribute('id',`option-${e.target.value}`);
+        li.innerHTML = e.target.value;
+        ul.appendChild(li);
+      }
+      select.selectedIndex=-1
+    }
+  })
+</script>
 
 </html>
